@@ -1,0 +1,13 @@
+--- a/cmake/templates/dolfinx.pc.in
++++ b/cmake/templates/dolfinx.pc.in
+@@ -1,8 +1,8 @@
+ # pkg-config configuration for DOLFINx
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=@CMAKE_INSTALL_PREFIX@
+-libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+-includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
++libdir=@CMAKE_INSTALL_LIBDIR@
++includedir=@CMAKE_INSTALL_INCLUDEDIR@
+ compiler=@CMAKE_CXX_COMPILER@
+ definitions=@PKG_DEFINITIONS@
+ extlibs=@DOLFINX_EXT_LIBS@
