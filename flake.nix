@@ -20,6 +20,7 @@
             # trame-vuetify
         ];
         local-packages = with self.packages.${system}; [
+            # slepc
             petsc4py
             scotch
             tfel
@@ -47,6 +48,7 @@
         # accessories for FEniCSx
         packages.petsc4py = pkgs.python311Packages.callPackage ./nix/petsc4py.nix { };
         packages.scotch = pkgs.python311Packages.callPackage ./nix/scotch.nix { };
+        packages.slepc  = pkgs.callPackage ./nix/slepc.nix { };
 
         # FEniCSx components
         packages.ufl = pkgs.python311Packages.callPackage ./nix/ufl.nix { };
