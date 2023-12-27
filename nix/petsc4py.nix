@@ -4,6 +4,7 @@
 , numpy
 , pip
 , petsc
+, cython
 , mpi
 , clang
 }:
@@ -23,6 +24,7 @@ buildPythonPackage rec {
 
   buildInputs = [
     petsc
+    cython
   ];
 
   propagatedBuildInputs = [
