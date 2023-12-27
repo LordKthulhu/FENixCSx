@@ -5,3 +5,4 @@ tests/src
 .DS_Store
 tmp/
 *.swp
+result

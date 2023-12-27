@@ -13,7 +13,7 @@
 , runCommand
 }:
 let
-    petscInArchFolder = runCommand "petscInArchFolder" {} ''
+    petscWithArchFolder = runCommand "petscInArchFolder" {} ''
         mkdir -p $out/${system}/
         cp -R ${petsc}/* $out/
         cp -R ${petsc}/* $out/${system}/
@@ -30,11 +30,10 @@ stdenv.mkDerivation rec {
 
     # strictDeps = true;
     nativeBuildInputs = [ python311 gfortran mpi openssh];
-    buildInputs = [ blas lapack petscInArchFolder ];
+    buildInputs = [ blas lapack petscWithArchFolder ];
 
-    PETSC_DIR = "${petscInArchFolder}";
+    PETSC_DIR = "${petscWithArchFolder}";
     PETSC_ARCH = "${system}";
-    # SLEPC_DIR = "/private/tmp/nix-build-slepc-3.19.2.drv-3/slepc-3.19.2";
 
     postPatch = lib.optionalString stdenv.isDarwin ''
       substituteInPlace config/install.py \
@@ -58,5 +57,4 @@ stdenv.mkDerivation rec {
 
     enableParallelBuilding = true;
     doCheck = stdenv.hostPlatform == stdenv.buildPlatform;
-    # doCheck = false;
 }

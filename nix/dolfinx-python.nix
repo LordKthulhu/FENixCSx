@@ -15,6 +15,7 @@
 , hdf5-mpi
 , pkg-config
 , petsc4py
+, slepc4py
 , petsc
 , cffi
 , certifi
@@ -56,6 +57,7 @@ buildPythonPackage rec {
     numpy
     pybind11
     petsc4py
+    slepc4py
     cffi
     certifi
     zlib

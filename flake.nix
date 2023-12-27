@@ -49,6 +49,10 @@
         packages.petsc4py = pkgs.python311Packages.callPackage ./nix/petsc4py.nix { };
         packages.scotch = pkgs.python311Packages.callPackage ./nix/scotch.nix { };
         packages.slepc  = pkgs.callPackage ./nix/slepc.nix { };
+        packages.slepc4py = pkgs.python311Packages.callPackage ./nix/slepc4py.nix {
+            slepc = self.packages.${system}.slepc;
+            petsc4py = self.packages.${system}.petsc4py;
+        };
 
         # FEniCSx components
         packages.ufl = pkgs.python311Packages.callPackage ./nix/ufl.nix { };
@@ -71,6 +75,7 @@
             ffcx = self.packages.${system}.ffcx;
             dolfinx-cpp = self.packages.${system}.dolfinx-cpp;
             petsc4py = self.packages.${system}.petsc4py;
+            slepc4py = self.packages.${system}.slepc4py;
         };
 
         devShell = pkgs.mkShell {
