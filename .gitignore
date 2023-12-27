@@ -3,3 +3,5 @@ tests/.ipynb_checkpoints
 tests/include
 tests/src
 .DS_Store
+tmp/
+*.swp

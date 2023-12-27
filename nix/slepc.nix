@@ -10,8 +10,15 @@
 , openssh
 , petsc
 , system
+, runCommand
 }:
-
+let
+    petscInArchFolder = runCommand "petscInArchFolder" {} ''
+        mkdir -p $out/${system}/
+        cp -R ${petsc}/* $out/
+        cp -R ${petsc}/* $out/${system}/
+    '';
+in
 stdenv.mkDerivation rec {
     pname = "slepc";
     version = "3.19.2";
@@ -21,21 +28,23 @@ stdenv.mkDerivation rec {
         sha256 = "sha256-yn7ZBnlZcfvjXwjuJRomuGpEQqGGCbh4y6AINcnWIDQ=";
     };
 
-    mpiSupport = true;
-
     # strictDeps = true;
-    nativeBuildInputs = [ python311 gfortran ]
-      ++ lib.optional mpiSupport mpi
-      ++ lib.optional (mpiSupport && mpi.pname == "openmpi") openssh
-    ;
-    buildInputs = [ blas lapack petsc ];
+    nativeBuildInputs = [ python311 gfortran mpi openssh];
+    buildInputs = [ blas lapack petscInArchFolder ];
 
-    PETSC_DIR = "${petsc}";
+    PETSC_DIR = "${petscInArchFolder}";
+    PETSC_ARCH = "${system}";
+    # SLEPC_DIR = "/private/tmp/nix-build-slepc-3.19.2.drv-3/slepc-3.19.2";
 
-    prePatch = lib.optionalString stdenv.isDarwin ''
+    postPatch = lib.optionalString stdenv.isDarwin ''
       substituteInPlace config/install.py \
         --replace /usr/bin/install_name_tool ${darwin.cctools}/bin/install_name_tool
     '';
+    # patches = [
+    #   ./slepc/petsc.py.patch
+    #   ./slepc/gmakefile.patch
+    #   ./slepc/makefile.patch
+    # ];
 
     preConfigure = ''
       patchShebangs ./lib/slepc/bin
@@ -43,6 +52,11 @@ stdenv.mkDerivation rec {
 
     configureScript = "python ./configure";
 
+    preBuild = ''
+       export SLEPC_DIR=$(pwd)
+    '';
+
     enableParallelBuilding = true;
     doCheck = stdenv.hostPlatform == stdenv.buildPlatform;
+    # doCheck = false;
 }
