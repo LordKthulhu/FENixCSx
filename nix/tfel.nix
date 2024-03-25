@@ -26,10 +26,11 @@ stdenv.mkDerivation rec {
     propagatedBuildInputs = [
         python3
         pkgs.python311Packages.numpy
+        pkgs.python311Packages.boost
         gnuplot
     ];
 
     cmakeFlags = [
-        "-Denable-python=ON"
+        "-Denable-python-bindings=ON"
     ];
 }

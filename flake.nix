@@ -11,10 +11,10 @@
             venvShellHook
             pip
             numpy
-            # pyvista
-            # notebook
             # jupyterlab
             # ipywidgets
+            # notebook
+            # pyvista
             # trame
             # trame-vtk
             # trame-vuetify
