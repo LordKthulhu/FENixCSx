@@ -5,3 +5,5 @@ tests/src
 .DS_Store
 tmp/
 *.swp
+.ipynb_checkpoints
+*.ipynb
