@@ -19,3 +19,4 @@ Then, you can run the test notebooks for FEniCSx and dolfinx-materials found in 
 
 - Add MUMPS support in PETSc
 - Add ADIOS2 for dolfinx
+- Bump dolfinx version to 0.8.0
