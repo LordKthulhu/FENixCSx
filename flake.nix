@@ -80,7 +80,7 @@
 
         devShell = pkgs.mkShell {
           venvDir = "./.venv";
-          buildInputs = core-python-packages ++ local-packages;
+          buildInputs = core-python-packages ++ local-packages ++ [pkgs.openmpi];
           # I tried ...
           # shellHook = ''
           #   pip install pyvista notebook jupyterlab ipywidgets trame trame-vtk trame-vuetify
