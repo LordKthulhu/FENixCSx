@@ -17,13 +17,13 @@
 stdenv.mkDerivation rec {
 
     pname = "dolfinx";
-    version = "0.7.0";
+    version = "0.8.0";
 
     src = fetchFromGitHub {
         owner = "FEniCS";
         repo = "dolfinx";
-        rev = "v0.7.0";
-        hash = "sha256-G65mSk4wEVRvz+i+AQwCq80hzTAr/TREw/oCaLO8xu0=";
+        rev = "v0.8.0";
+        hash = "sha256-DYnzl7WI600KuC79ponzuJzr13BucDuRoIdm+U1nxX0=";
     };
 
     sourceRoot = "${src.name}/cpp";

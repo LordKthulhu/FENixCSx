@@ -20,17 +20,19 @@
 , cffi
 , certifi
 , zlib
+, nanobind
+, ninja
 }:
 
 buildPythonPackage rec {
   pname = "dolfinx";
-  version = "0.7.0";
+  version = "0.8.0";
 
   src = fetchFromGitHub {
     owner = "FEniCS";
     repo = "dolfinx";
     rev = "v${version}";
-    hash = "sha256-G65mSk4wEVRvz+i+AQwCq80hzTAr/TREw/oCaLO8xu0=";
+    hash = "sha256-DYnzl7WI600KuC79ponzuJzr13BucDuRoIdm+U1nxX0=";
   };
 
   sourceRoot = "${src.name}/python";
@@ -50,6 +52,8 @@ buildPythonPackage rec {
     boost
     hdf5-mpi
     pkg-config
+    nanobind
+    ninja
   ];
 
   propagatedBuildInputs = [

@@ -11,18 +11,19 @@
 , pathspec
 , pyproject-metadata
 , ufl
+, nanobind
 }:
 
 buildPythonPackage rec {
 
   pname = "basix";
-  version = "v0.7.0.post0";
+  version = "v0.8.0";
 
   src = fetchFromGitHub {
     owner = "FEniCS";
     repo = "basix";
-    rev = "v0.7.0.post0";
-    hash = "sha256-CiNQkq8wPSEdi3egYSY6z5C6PrOGmNJJvOBRbZArvsI=";
+    rev = "v0.8.0";
+    hash = "sha256-SfpuPYgrh/FyK0dAgXcwcRHUSg7uy+AWFbtLubswfFo=";
   };
 
   format = "pyproject";
@@ -30,10 +31,12 @@ buildPythonPackage rec {
   nativeBuildInputs = [
     ps
     ninja
+    nanobind
   ];
 
   buildInputs = [
     blas
+    nanobind
   ];
 
   propagatedBuildInputs = [

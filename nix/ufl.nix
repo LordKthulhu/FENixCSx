@@ -2,17 +2,18 @@
 , fetchFromGitHub
 , setuptools
 , numpy
+, pip
 }:
 
 buildPythonPackage {
   pname = "ufl";
-  version = "2023.2.0";
+  version = "2024.1.0";
 
   src = fetchFromGitHub {
     owner = "FEniCS";
     repo = "ufl";
-    rev = "2023.2.0";
-    hash = "sha256-DdAD+FyZiPpUizaGwNrDDMSuoECbbgBrWPzm8V2XArI=";
+    rev = "2024.1.0";
+    hash = "sha256-vXVgD6PVvMVvyocbRFQd7ca91MHwv32W+6TxDQm1y6M=";
   };
 
   format = "pyproject";
@@ -20,5 +21,6 @@ buildPythonPackage {
   propagatedBuildInputs = [
     setuptools
     numpy
+    pip
   ];
 }

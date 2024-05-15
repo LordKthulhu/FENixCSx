@@ -11,6 +11,7 @@
             venvShellHook
             pip
             numpy
+            ninja
             # jupyterlab
             # ipywidgets
             # notebook
@@ -21,6 +22,7 @@
         ];
         local-packages = with self.packages.${system}; [
             # slepc
+            nanobind
             petsc4py
             scotch
             tfel
@@ -30,7 +32,7 @@
             ffcx
             dolfinx-cpp
             dolfinx-python
-            dolfinx-materials
+            #dolfinx-materials
         ];
       in
       {
@@ -53,11 +55,13 @@
             slepc = self.packages.${system}.slepc;
             petsc4py = self.packages.${system}.petsc4py;
         };
+        packages.nanobind = pkgs.python311Packages.callPackage ./nix/nanobind.nix { };
 
         # FEniCSx components
         packages.ufl = pkgs.python311Packages.callPackage ./nix/ufl.nix { };
         packages.basix = pkgs.python311Packages.callPackage ./nix/basix.nix {
             ufl = self.packages.${system}.ufl;
+            nanobind = self.packages.${system}.nanobind;
         };
         packages.ffcx = pkgs.python311Packages.callPackage ./nix/ffcx.nix {
             ufl = self.packages.${system}.ufl;
@@ -76,6 +80,7 @@
             dolfinx-cpp = self.packages.${system}.dolfinx-cpp;
             petsc4py = self.packages.${system}.petsc4py;
             slepc4py = self.packages.${system}.slepc4py;
+            nanobind = self.packages.${system}.nanobind;
         };
 
         devShell = pkgs.mkShell {
