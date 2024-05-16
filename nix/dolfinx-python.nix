@@ -71,6 +71,10 @@ buildPythonPackage rec {
     petsc
   ];
 
+  patches = [
+    ./dolfinx-pyproject.toml.patch
+  ];
+
   dontUseCmakeConfigure = true;
 
 }

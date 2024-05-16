@@ -1,0 +1,20 @@
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -15,9 +15,7 @@
+ name = "fenics-dolfinx"
+ version = "0.8.0"
+ description = "DOLFINx Python interface"
+-readme = "../README.md"
+ requires-python = ">=3.9.0"
+-license = { file = "../COPYING.LESSER" }
+ authors = [
+       { email = "fenics-steering-council@googlegroups.com" },
+       { name = "FEniCS Steering Council" },
+@@ -52,7 +50,6 @@
+ wheel.packages = ["dolfinx"]
+ sdist.exclude = ["*.cpp"]
+ cmake.build-type = "Release"
+-wheel.license-files = ["../COPYING*"]
+
+ [tool.pytest]
+ junit_family = "xunit2"
