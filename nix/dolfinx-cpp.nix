@@ -12,6 +12,7 @@
 , hdf5-mpi
 , scotch
 , petsc
+, adios2
 }:
 
 stdenv.mkDerivation rec {
@@ -47,6 +48,7 @@ stdenv.mkDerivation rec {
         basix
         ffcx
         petsc
+        adios2
     ];
 
     cmakeFlags = [

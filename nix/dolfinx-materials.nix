@@ -1,5 +1,5 @@
 { buildPythonPackage
-, fetchurl
+, fetchGitLab
 , setuptools
 }:
 

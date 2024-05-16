@@ -12,6 +12,7 @@
             pip
             numpy
             ninja
+            mpi4py
             # jupyterlab
             # ipywidgets
             # notebook
@@ -56,6 +57,7 @@
             petsc4py = self.packages.${system}.petsc4py;
         };
         packages.nanobind = pkgs.python311Packages.callPackage ./nix/nanobind.nix { };
+        packages.adios2 = pkgs.callPackage ./nix/adios2.nix {};
 
         # FEniCSx components
         packages.ufl = pkgs.python311Packages.callPackage ./nix/ufl.nix { };
@@ -72,6 +74,7 @@
             ufl = self.packages.${system}.ufl;
             basix = self.packages.${system}.basix;
             ffcx = self.packages.${system}.ffcx;
+            adios2 = self.packages.${system}.adios2;
         };
         packages.dolfinx-python = pkgs.python311Packages.callPackage ./nix/dolfinx-python.nix {
             ufl = self.packages.${system}.ufl;
@@ -81,6 +84,7 @@
             petsc4py = self.packages.${system}.petsc4py;
             slepc4py = self.packages.${system}.slepc4py;
             nanobind = self.packages.${system}.nanobind;
+            adios2 = self.packages.${system}.adios2;
         };
 
         devShell = pkgs.mkShell {

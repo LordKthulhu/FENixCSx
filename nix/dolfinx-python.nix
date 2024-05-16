@@ -22,6 +22,7 @@
 , zlib
 , nanobind
 , ninja
+, adios2
 }:
 
 buildPythonPackage rec {
@@ -69,6 +70,7 @@ buildPythonPackage rec {
     basix
     ffcx
     petsc
+    adios2
   ];
 
   patches = [
