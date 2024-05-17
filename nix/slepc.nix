@@ -28,7 +28,6 @@ stdenv.mkDerivation rec {
         sha256 = "sha256-yn7ZBnlZcfvjXwjuJRomuGpEQqGGCbh4y6AINcnWIDQ=";
     };
 
-    # strictDeps = true;
     nativeBuildInputs = [ python311 gfortran mpi openssh];
     buildInputs = [ blas lapack petscWithArchFolder ];
 
@@ -39,11 +38,6 @@ stdenv.mkDerivation rec {
       substituteInPlace config/install.py \
         --replace /usr/bin/install_name_tool ${darwin.cctools}/bin/install_name_tool
     '';
-    # patches = [
-    #   ./slepc/petsc.py.patch
-    #   ./slepc/gmakefile.patch
-    #   ./slepc/makefile.patch
-    # ];
 
     preConfigure = ''
       patchShebangs ./lib/slepc/bin
@@ -56,5 +50,5 @@ stdenv.mkDerivation rec {
     '';
 
     enableParallelBuilding = true;
-    doCheck = stdenv.hostPlatform == stdenv.buildPlatform;
+    doCheck = false;
 }

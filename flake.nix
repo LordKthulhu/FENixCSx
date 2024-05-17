@@ -13,13 +13,6 @@
             numpy
             ninja
             mpi4py
-            # jupyterlab
-            # ipywidgets
-            # notebook
-            # pyvista
-            # trame
-            # trame-vtk
-            # trame-vuetify
         ];
         local-packages = with self.packages.${system}; [
             # slepc
@@ -57,7 +50,7 @@
             petsc4py = self.packages.${system}.petsc4py;
         };
         packages.nanobind = pkgs.python311Packages.callPackage ./nix/nanobind.nix { };
-        packages.adios2 = pkgs.callPackage ./nix/adios2.nix {};
+        packages.adios2 = pkgs.python311Packages.callPackage ./nix/adios2.nix {};
 
         # FEniCSx components
         packages.ufl = pkgs.python311Packages.callPackage ./nix/ufl.nix { };
@@ -90,10 +83,6 @@
         devShell = pkgs.mkShell {
           venvDir = "./.venv";
           buildInputs = core-python-packages ++ local-packages ++ [pkgs.openmpi];
-          # I tried ...
-          # shellHook = ''
-          #   pip install pyvista notebook jupyterlab ipywidgets trame trame-vtk trame-vuetify
-          # '';
         };
       }
     );

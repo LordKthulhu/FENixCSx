@@ -11,6 +11,8 @@ stdenv
 , bzip2
 , bison
 , flex
+, mpi4py
+, ps
 }:
 
 stdenv.mkDerivation rec {
@@ -26,6 +28,7 @@ stdenv.mkDerivation rec {
 
     nativeBuildInputs = [
         cmake
+        ps
         perl
         mpi
         hdf5-mpi
@@ -34,13 +37,15 @@ stdenv.mkDerivation rec {
         bison
         flex
         pkg-config
+        mpi4py
     ];
 
     propagatedBuildInputs = [
         python3
     ];
 
-    # cmakeFlags = [
-    #     "-DADIOS2_USE_Python=TRUE"
-    # ];
+    cmakeFlags = [
+        "-DADIOS2_USE_Python=TRUE"
+        "-DADIOS2_INSTALL_GENERATE_CONFIG=OFF"
+    ];
 }
