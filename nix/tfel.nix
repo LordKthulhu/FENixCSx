@@ -32,5 +32,6 @@ stdenv.mkDerivation rec {
 
     cmakeFlags = [
         "-Denable-python-bindings=ON"
+        "-Dlocal-castem-header=ON"
     ];
 }
