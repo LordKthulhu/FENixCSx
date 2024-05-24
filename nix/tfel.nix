@@ -9,13 +9,13 @@
 
 stdenv.mkDerivation rec {
     pname = "tfel";
-    version = "4.2.0";
+    version = "5.0.0-dev";
 
     src = fetchFromGitHub {
         owner = "thelfer";
         repo = "tfel";
-        rev = "TFEL-${version}";
-        sha256 = "sha256-VfAck+D1zPpt45i1VdAn0ITulhzVY4kUFAoCW0LtjuE=";
+        rev = "91fb079fa8e9f10fe1c7c4e9b42218bf129321b5";
+        sha256 = "sha256-DlRMST5MCyRChGaeekjsMtyHrbHQIxyA5dpTY+c02UA=";
     };
 
     nativeBuildInputs = [
